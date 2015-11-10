@@ -210,6 +210,14 @@ If you prefer to control all the steps this is your installation method:
 	chmod g+s logs
 	```
 
+11. Edit the installation status file
+    ```
+    vi /var/www/myximdex/conf/_STATUSFILE
+    ```
+    Type Installed and save it.
+    ```
+    Installed
+    ```
 
-11. Open Ximdex with your browser to end the configuration (http://HOST/myximdex)
+12. Open Ximdex with your browser to end the configuration (http://HOST/myximdex)
 
