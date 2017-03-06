@@ -35,6 +35,7 @@ use Ximdex\Runtime\Cli\Shell,
 use Ximdex\Runtime\Db;
 use Ximdex\Setup\Step\Modules;
 use Ximdex\Tasks\Worker;
+use Ximdex\Utils\FsUtils;
 
 
 /**
@@ -208,7 +209,7 @@ class Module  {
 
         if (file_exists($sql_file)) {
             $db = new Db();
-            $sql = file_get_contents($sql_file);
+            $sql = FsUtils::file_get_contents($sql_file);
             $result = $db->ExecuteScript($sql);
         } else {
             $this->messages->add(sprintf(_("%s not exists"), $sql_file), MSG_TYPE_WARNING);

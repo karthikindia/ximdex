@@ -257,7 +257,7 @@ class Action_fileupload extends ActionAbstract {
 			$templateType = 'generic_template';
 		}
 
-		$templatecontent = FsUtils::file_get_contents($templateFilePath);
+		$templatecontent = FsUtils::file_get_contents( $templateFilePath );
 
 		// Detects if template is RNG and gets the content
 
@@ -277,7 +277,7 @@ class Action_fileupload extends ActionAbstract {
 		} else {
 			$nodeTypeName = 'VisualTemplate';
 
-			$contentContent = FsUtils::file_get_contents($contentFilePath);
+			$contentContent = FsUtils::file_get_contents( $contentFilePath );
 			$fileContent = $templatecontent . "##########" . $contentContent;
 		}
 

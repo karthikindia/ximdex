@@ -131,7 +131,7 @@ class Loader_XimFile
 
     public function getContent()
     {
-        return FsUtils::file_get_contents($this->path);
+        return FsUtils::file_get_contents( $this->path );
     }
 
     public function setContent($content)
@@ -473,7 +473,7 @@ class Loader_XimDOC extends Loader_AbstractNode
 
     public function getContent()
     {
-        return FsUtils::file_get_contents($this->getPath());
+        return FsUtils::file_get_contents( $this->getPath() );
     }
 
     public function setContent($content)
@@ -497,7 +497,7 @@ class Loader_XimLET extends Loader_AbstractNode
 
     public function getContent()
     {
-        return FsUtils::file_get_contents($this->getPath());
+        return FsUtils::file_get_contents( $this->getPath() );
     }
 
     public function setContent($content)
@@ -520,7 +520,7 @@ class Loader_Scheme extends Loader_AbstractNode
 
     public function getContent()
     {
-        return FsUtils::file_get_contents($this->getPath());
+        return FsUtils::file_get_contents( $this->getPath() );
     }
 
     public function setContent($content)

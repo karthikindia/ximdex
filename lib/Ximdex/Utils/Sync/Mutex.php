@@ -26,6 +26,8 @@
 
 
 namespace Ximdex\Utils\Sync;
+use Ximdex\Utils\FsUtils;
+
 /**
  *
  */
@@ -65,7 +67,7 @@ class Mutex
 		// detect if old process/ is dead
 		$old_pid = NULL;
 		if (is_file($this->file_name)) {
-			$old_pid = file_get_contents($this->file_name);
+			$old_pid = FsUtils::file_get_contents($this->file_name);
 		}
 
 		if (!empty($old_pid) && posix_kill(trim($old_pid), 0)) {

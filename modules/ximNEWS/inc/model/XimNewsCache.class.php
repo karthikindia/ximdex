@@ -270,7 +270,7 @@ class XimNewsCache extends XimNewsCache_ORM {
 		}
 
 		$targetPath =  \App::getValue("AppRoot") .  \App::getValue("FileRoot"). "/". $cacheFile;
-		$content = file_get_contents($targetPath);
+		$content = FsUtils::file_get_contents($targetPath);
 
 		return $content;
     }

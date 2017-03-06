@@ -163,7 +163,7 @@ class Filter {
 		// Call subclass filter method.
 		$this->subclass->filter($input, $output, $header);
 
-		$filtered_content = file_get_contents($output);
+		$filtered_content = FsUtils::file_get_contents($output);
 
 		$ret_val["content"] = $filtered_content;
 		$ret_val["header"] = $header;

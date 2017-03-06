@@ -30,6 +30,7 @@ use Ximdex\Models\User;
 use Ximdex\MVC\ActionAbstract;
 use Ximdex\Runtime\App;
 use Ximdex\Runtime\WebRequest;
+use Ximdex\Utils\FsUtils;
 
 ModulesManager::file('/inc/i18n/I18N.class.php');
 
@@ -97,11 +98,10 @@ class Action_login extends ActionAbstract
 
         if (empty($news_content)) {
             $file = "index_" . strtolower(DEFAULT_LOCALE) . ".html";
-
-            if (file_exists(XIMDEX_ROOT_PATH . "/xmd/news/$file")) {
-                return file_get_contents(XIMDEX_ROOT_PATH . "/xmd/news/$file");
+            if (FsUtils::exists(XIMDEX_ROOT_PATH . "/xmd/news/$file")) {
+                return FsUtils::file_get_contents(XIMDEX_ROOT_PATH . "/xmd/news/$file");
             }else{
-                return file_get_contents(XIMDEX_ROOT_PATH . "/xmd/news/index.html");
+                return FsUtils::file_get_contents(XIMDEX_ROOT_PATH . "/xmd/news/index.html");
             }
         }
 

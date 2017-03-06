@@ -26,9 +26,10 @@
 
 namespace Ximdex\Modules;
 
+use Ximdex\NodeTypes\dummy;
 Use Ximdex\Utils\FsUtils;
 use \Ximdex\Runtime\App;
-
+use Ximdex\Logger;
 
 /**
  *
@@ -211,6 +212,14 @@ class Manager
         return $modules;
     }
 
+    public static function isModule( $module ) {
+        $modules = self::getModules();
+        if ( in_array( $module, $modules, true ) ){
+            return true;
+        }
+        return false;
+    }
+
     function getMetaParent()
     {
         self::parseMetaParent(self::get_modules_dir(), $metaParent);
@@ -249,7 +258,6 @@ class Manager
     {
         if ($metaParent = self::hasMetaParent($name)) {
             self::$msg = sprintf("Can't install module %s directly. Try installing Meta-module %s instead", $name, $metaParent[$name]);
-
             return false;
         }
 
@@ -261,7 +269,7 @@ class Manager
         $module = Manager::instanceModule($name);
 
         if (is_null($module)) {
-            print(" * ERROR: Can't install module $name\n");
+            Logger::error(" * ERROR: Can't install module {$name}\n");
             return false;
         }
 
@@ -384,7 +392,7 @@ class Manager
         if (file_exists($moduleClassPath)) {
             include_once($moduleClassPath);
         } else {
-            self::$msg = "Module definition file not found [$moduleClassPath].";
+            Logger::error("Module definition file not found [$moduleClassPath].");
             return NULL;
         }
 

@@ -5,6 +5,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Symfony\Component\Yaml\Parser;
 use \Psr\Http\Message\ResponseInterface as Response;
 use \Psr\Http\Message\ServerRequestInterface as Request;
+use Ximdex\Utils\FsUtils;
 
 require '../vendor/autoload.php';
 
@@ -150,7 +151,7 @@ $app->post($basePath . '/upload-image', function (Request $request, Response $re
 
 	$content = (string) $img->save($image["tmp_name"]);
 
-	$content = file_get_contents($image["tmp_name"]);
+	$content = FsUtils::file_get_contents($image["tmp_name"]);
 
 	$images_id = $config['images_folder_id'];
 
@@ -239,7 +240,7 @@ $app->run();
 
 function readConfig() {
 	$yaml = new Parser();
-	return $yaml->parse(file_get_contents('../config.yml'));
+	return $yaml->parse(FsUtils::file_get_contents('../config.yml'));
 }
 
 /**

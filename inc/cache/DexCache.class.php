@@ -152,7 +152,7 @@ class DexCache
 
         $name = DexCache::_createName($idNode, $channelId);
 
-        $c = file_get_contents($name);
+        $c = FsUtils::file_get_contents($name);
 
         if ($c) {
             return $c;

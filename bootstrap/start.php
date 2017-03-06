@@ -5,7 +5,7 @@ use Monolog\Handler\StreamHandler;
 use Ximdex\Runtime\App ;
 
 /* Debug only */
-// putenv ( 'APP_DEBUG=true' );
+ putenv ( 'APP_DEBUG=true' );
 
 // for legacy compatibility
 if (!defined('XIMDEX_ROOT_PATH')) {
@@ -55,7 +55,7 @@ include_once XIMDEX_ROOT_PATH . '/conf/log.php';
 $modulesConfString = "";
 $installModulesPath = App::getValue('XIMDEX_ROOT_PATH') . '/conf/install-modules.php';
 if( file_exists($installModulesPath) ){
-    $modulesConfString = file_get_contents($installModulesPath);
+    $modulesConfString = \Ximdex\Utils\FsUtils::file_get_contents($installModulesPath);
 }
 
 $matches = array();

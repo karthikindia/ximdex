@@ -29,6 +29,7 @@ namespace Ximdex\Runtime\Cli;
 
 use argument;
 
+use Ximdex\Utils\FsUtils;
 use Ximdex\Utils\Messages;
 
 if (!defined('XIMDEX_ROOT_PATH')) {
@@ -123,7 +124,7 @@ abstract class CliParser
                 if (isset($params[$key + 1])) {
                     $fileName = $params[$key + 1];
                     if (is_file($fileName)) {
-                        $fileArguments = file_get_contents($fileName);
+                        $fileArguments = FsUtils::file_get_contents($fileName);
                         if (!empty($fileArguments)) {
                             /* To make all args to be separated by blank spaces*/
                             $search = array("\n", '=');

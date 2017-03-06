@@ -10,12 +10,12 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Ximdex\Modules\Manager;
 
-class ModulesListCommand extends Command
+class ModuleListCommand extends Command
 {
     protected function configure()
     {
         $this
-            ->setName('modules:list')
+            ->setName('module:list')
             ->setDescription('List Modules')
             ->addOption(
                 'show-path',

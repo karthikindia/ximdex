@@ -28,6 +28,8 @@ namespace Ximdex\Utils\Logs;
 
 
 
+use Ximdex\Utils\FsUtils;
+
 class Getter_file extends Getter
 {
 
@@ -54,7 +56,7 @@ class Getter_file extends Getter
 				$readedData = fread($handler, $quantity);
 				fclose($handler);
 			} else {
-				$readedData = file_get_contents($this->_params['file']);
+				$readedData = FsUtils::file_get_contents($this->_params['file']);
 			}
 
 		}

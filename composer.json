@@ -51,7 +51,8 @@
         "php-di/php-di": "^5.4",
         "doctrine/cache": "^1.6",
         "doctrine/common": "^2.7",
-        "laravel/lumen-framework": "^5.4"
+        "laravel/lumen-framework": "^5.4",
+        "league/flysystem": "^1.0"
     },
      "require-dev": {
         "mockery/mockery": "0.8.0",

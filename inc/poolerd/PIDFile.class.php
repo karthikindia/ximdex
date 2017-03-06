@@ -1,4 +1,6 @@
 <?php
+use Ximdex\Utils\FsUtils;
+
 /**
  *  \details &copy; 2011  Open Ximdex Evolution SL [http://www.ximdex.org]
  *
@@ -37,7 +39,7 @@ class PIDFile {
 	public function getPID() {
 		$pid = null;
 		if (is_file($this->pidfile)) {
-			$pid = trim(@file_get_contents($this->pidfile, false));
+			$pid = trim( FsUtils::file_get_contents($this->pidfile, false));
 			if (!is_numeric($pid)) $pid = null;
 		}
 		return $pid;

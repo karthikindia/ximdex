@@ -67,14 +67,14 @@ class FolderNode extends Root
 
         $folder = \App::getValue("AppRoot") . \App::getValue("NodeRoot") . $folder;
 
-        if (file_exists($folder))
-            FsUtils::deltree($folder);
+        if (FsUtils::exists($folder)) {
+            FsUtils::deltree( $folder );
+        }
+        if (!FsUtils::mkdir($folder)) {
+            $this->parent->SetError( 7 );
+        }
 
-
-        if (!mkdir($folder, 0777))
-            $this->parent->SetError(7);
-
-        chmod($folder, 0777);
+        //chmod($folder, 0777);
     }
 
     /**
@@ -384,7 +384,7 @@ class FolderNode extends Root
                         error_log("Fail! Default metadata RNG " . $entry . " was not created!");
                     } else {
                         $newRngNode = new Node($rngId);
-                        $rngContent = file_get_contents(XIMDEX_ROOT_PATH . $path . $entry, FILE_USE_INCLUDE_PATH);
+                        $rngContent = FsUtils::file_get_contents(XIMDEX_ROOT_PATH . $path . $entry, FILE_USE_INCLUDE_PATH);
                         $newRngNode->SetContent($rngContent);
 
                         //setting the type of schema

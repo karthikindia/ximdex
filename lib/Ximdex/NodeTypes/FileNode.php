@@ -134,7 +134,7 @@ class FileNode extends Root
 
     function CreateNode($name = null, $parentID = null, $nodeTypeID = null, $stateID = null, $sourcePath = null)
     {
-        $content = FsUtils::file_get_contents($sourcePath);
+        $content = FsUtils::file_get_contents( $sourcePath);
         $data = new DataFactory($this->parent->get('IdNode'));
         $ret = $data->SetContent($content);
         $this->updatePath();
