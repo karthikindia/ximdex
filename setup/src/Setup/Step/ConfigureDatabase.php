@@ -7,15 +7,15 @@ use PDO;
 use PDOException;
 use Ximdex\Setup\Manager;
 
-class Database extends Base
+class ConfigureDatabase extends Base
 {
     public function __construct(Manager $manager)
     {
         parent::__construct($manager);
 
-        $this->label = "Database";
+        $this->label = "Configure Database";
         $this->template = "database.twig";
-        $this->title = "Database setup";
+        $this->title = "Configure Database";
         $this->vars['title'] = $this->title;
 
         $this->vars['form'] = $this->getForm();

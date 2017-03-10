@@ -39,16 +39,16 @@ class Base
 
         echo  $this->manager->render( $this->template ,  $this->vars );
     }
+
     public function getLabel( ) {
         return $this->label ;
     }
+
     public function addError( $title , $message , $step ) {
         $this->errors[] = [
             'step' => $step,
             'title' => $title ,
             'message'=> $message,
-
         ];
-
     }
 }

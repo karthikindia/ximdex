@@ -1,0 +1,83 @@
+{% extends "layout.twig" %}
+
+{% block title %}Installation progress{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <script src="/setup/assets/js/fetch.js"></script>
+{% endblock %}
+{% block content %}
+    <h2>
+        {{  title  }}
+    </h2>
+    <p>Wait while the installation process is running.</p>
+
+    <div class="progress">
+        <div id="progressbar" class="progress-bar progress-bar-striped active" role="progressbar"
+             style="width: 0%">
+            <span id="progressbartext" class="sr-only">0% Complete</span>
+        </div>
+    </div>
+
+    <p id="message" class="text-right">Creating tables...</p>
+
+    <script>
+    function setProgress(progress) {
+        var progressBar = document.getElementById('progressbar');
+        var progressBarText = document.getElementById('progressbartext');
+
+        progressBar.style.width = progress + '%';
+        progressBarText.textContent = progress + '% Complete';
+    }
+
+    function setMessage(message) {
+        var messageElement = document.getElementById('message');
+        messageElement.textContent = message;
+    }
+
+    function setError() {
+        var messageElement = document.getElementById('message');
+        messageElement.classList.add('text-error');
+    }
+
+    var href = window.location.href;
+
+    setProgress(0);
+    setProgress(33);
+
+    fetch(href + '&method=createdb')
+    .then(function(response) {
+        return response.json()
+    }).then(function(json) {
+        console.log('parsed json', json)
+        if( json.ok === 1 ) {
+            console.log("are equal");
+            setProgress(66);
+            setMessage('Installing modules...')
+        } else {
+            setError();
+        }
+    }).catch(function(ex) {
+        console.log('parsing failed', ex)
+    });
+
+    fetch(href + '&method=installmodules')
+            .then(function(response) {
+                return response.json()
+            }).then(function(json) {
+        console.log('parsed json', json)
+        if( json.ok === 1 ) {
+            console.log("are equal");
+            setProgress(100);
+            setMessage('Going to final step...');
+        } else {
+            setError();
+        }
+    }).catch(function(ex) {
+        console.log('parsing failed', ex)
+    });
+
+    </script>
+
+
+
+{% endblock %}

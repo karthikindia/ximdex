@@ -11,14 +11,14 @@ namespace Ximdex\Setup\Step;
 
 use Ximdex\Setup\Manager;
 
-class Wellcome extends Base
+class Welcome extends Base
 {
     public function __construct( Manager $manager )
     {
        parent::__construct( $manager);
-        $this->label = "Welcome";
-        $this->template = "welcome.twig" ;
-        $this->title = "Welcome to Ximdex CMS" ;
+        $this->label = 'Welcome';
+        $this->template = 'welcome.twig';
+        $this->title = 'Welcome to Ximdex CMS';
         $this->vars['title'] = $this->title ;
 
     }
