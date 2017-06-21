@@ -26,11 +26,12 @@
  */
 
 namespace Ximdex\Runtime;
+
 use Exception;
 use MetadataManager;
 use ModulesManager;
 use PoolerClient;
-use SolrConector;
+//use SolrConector;
 use Ximdex\Event\NodeEvent;
 use Ximdex\Logger;
 use Ximdex\Models\Node;
@@ -41,13 +42,10 @@ use Ximdex\Utils\PipelineManager;
 use Ximdex\Utils\Sync\SynchroFacade;
 use Ximdex\Logger as XMD_log;
 
-
 require_once(XIMDEX_ROOT_PATH . "/inc/utils.php");
-//
 require_once(XIMDEX_ROOT_PATH . '/inc/poolerd/PoolerClient.class.php');
 
 ModulesManager::file('/inc/metadata/MetadataManager.class.php');
-
 
 /**
  *
@@ -110,10 +108,9 @@ class DataFactory
         $this->ClearError();
         $this->nodeID = (int)$nodeID;
         /*
-         *
-         if (ModulesManager::isEnabled('ximRAM'))
-             $this->conector = new SolrConector();
-          */
+        if (ModulesManager::isEnabled('ximRAM'))
+        	$this->conector = new SolrConector();
+		*/
     }
 
     /**
@@ -135,7 +132,6 @@ class DataFactory
         $this->SetError(1);
         return false;
     }
-
 
     /**
      *
@@ -1224,8 +1220,4 @@ class DataFactory
             return $pipeCache->upgradeCaches($oldIdVersion, $idVersion);
         }
     }
-
-
 }
-
-?>

@@ -30,11 +30,25 @@ You can install Ximdex CMS with Docker or using the web installer.
 2. Open a terminal under the directory ximdex-develop, which has been unzipped, and run the command (launch it into the root of this repository, where the file docker-compose.yml is located):
 
     ```
-	docker-compose up
+	sudo docker-compose up
     ```
     > That will run the containers for Apache2, PHP, MySQL and Ximdex running on localhost:80 (the directory with ximdex has to be in a shared path for docker)
 
 3. From your Chrome, Firefox, Safari or different browser visit http://localhost to end the installation.
+
+    If you get some errors like these ones in the step one:
+    
+    > Check permission on directory /conf/, Read and Write are required to install Ximdex
+    Check permission on directory /data/, Read and Write are required to install Ximdex
+    ...
+    
+    You need to grant read and write permissions to these directories, which have been placed in our Ximdex installation directory, by this way:
+
+    ```
+    sudo chmod -R 777 data
+    sudo chmod 777 logs
+    sudo chmod 777 conf
+    ```
     
     > For docker, you will need to use the host **db** instead of the suggested **localhost** and the password **ximdex** in the "*Database password*" field, to make Ximdex installation able to access to the database server, and create the data schema.
 
@@ -44,7 +58,12 @@ You can install Ximdex CMS with Docker or using the web installer.
     ```
 
 4. Play with Ximdex CMS at http://localhost using user Ximdex with the choosen password.
-    > To stop the services, run docker-compose down from the root directory where the composer was launched.
+
+To stop the services, run
+```
+sudo docker-compose down
+```
+from the root directory where the composer was launched.
 
 ## B) Installing from Github with the Web Installer
 When Apache2 and PHP are running with the requested packages you have to download Ximdex CMS, move it to the final destination on your document root (i.e.: /var/www/myximdex, in some cases this may be /var/www/html/), set directory permissions and file owners (user/group) in harmony with your web server configuration and configure it using your web browser pointing to the desired URL (i.e.: http://yourhost/myximdex). You will need root access to a unix console to execute some steps...
@@ -53,7 +72,7 @@ When Apache2 and PHP are running with the requested packages you have to downloa
 *  A terminal with Telnet or SSH.
 *  A user with enough permissions to create the directory where Ximdex CMS will be installed (under a document root for your web server)
 *  Enough free space in the filesystem. See 'conf/diskspace.php' file for further information.
-*  A **database server** like *MySQL Server* (>= 5.1) or *MariaDB* (>=5.5) and a database user that can create the Ximdex Database.
+*  A **database server** like *MySQL Server* (>= 5.6) or *MariaDB* (>=5.5) and a database user that can create the Ximdex Database.
     i.e. you can execute in a terminal console for MySQL server:
     ```
     sudo apt-get install mysql-server
@@ -71,7 +90,7 @@ When Apache2 and PHP are running with the requested packages you have to downloa
     sudo apt-get install libapache2-mpm-itk
     ```
     
-*  **PHP** (>= 5.2.5)
+*  **PHP** (>= 5.6.0)
     * PHP package:
         ```
         sudo apt-get install php
@@ -140,7 +159,7 @@ When Apache2 and PHP are running with the requested packages you have to downloa
 	```
 	chown -R www-data:www-data myximdex
 	cd myximdex
-	chmod g+s data
+	chmod -R g+s data
 	chmod g+s logs
 	chmod g+s conf
 	```

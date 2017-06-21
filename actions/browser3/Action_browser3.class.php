@@ -35,7 +35,6 @@ use Ximdex\Models\XimLocale;
 use Ximdex\MVC\ActionAbstract;
 use Ximdex\Runtime\App;
 use Ximdex\Runtime\Db;
-//use Ximdex\Runtime\WebRequest;
 use Ximdex\Utils\Extensions;
 //use Ximdex\Utils\Serializer;
 use Ximdex\Utils\Session;
@@ -291,12 +290,14 @@ class Action_browser3 extends ActionAbstract
         $this->render($values, $template, 'only_template.tpl');
     }
 
-//	protected function sendJSON($data) {
-//		$data = Serializer::encode(SZR_JSON, $data);
-//		header('Content-type: application/json');
-//		echo $data;
-//	}
-
+    /*
+    protected function sendJSON($data) {
+		$data = Serializer::encode(SZR_JSON, $data);
+		header('Content-type: application/json');
+		echo $data;
+    }
+	*/
+    
     /**
      * Returns a JSON object with the allowed nodetypes for searches
      */
@@ -523,7 +524,7 @@ class Action_browser3 extends ActionAbstract
         $set = NodeSets::create($name);
         $errors = $set->messages->messages;
 
-        if ($set->getId() > 0 && $nodes !== null) {
+        if ($set->getId() > 0 && $nodes) {
             $ret = $this->addNodeToSet($set->getId(), $nodes);
             $errors = array_merge($errors, $ret);
         }
@@ -535,7 +536,7 @@ class Action_browser3 extends ActionAbstract
         )
         );
 
-        if ($set->getId() > 0 && $users !== null) {
+        if ($set->getId() > 0 && $users) {
             $ret = $this->addUserToSet($set->getId(), $users);
             $errors = array_merge($errors, $ret);
         }
@@ -776,7 +777,7 @@ class Action_browser3 extends ActionAbstract
         $users = new User();
         $users = $users->find(ALL, 'IdUser <> %s', array($sessionUser));
 
-        if ($users !== null) {
+        if ($users) {
             foreach ($users as $user) {
                 $idUser = $user['IdUser'];
                 $ret[] = array(
@@ -794,8 +795,8 @@ class Action_browser3 extends ActionAbstract
 
             $users = new RelNodeSetsUsers();
             $users = $users->find(ALL, 'IdSet = %s', array($idSet));
-
-            if ($users !== null) {
+            
+            if ($users) {
                 foreach ($users as $user) {
                     $idUser = $user['IdUser'];
                     if (isset($aux[$idUser])) {
