@@ -1,8 +1,13 @@
 sudo: required
+dist: trusty
 
 group: edge
 
-language: generic
+#language: generic
+language: php
+php:
+  - '7.0'
+  - '7.1'
 
 services:
   - docker
@@ -10,8 +15,6 @@ services:
 env:
   - PHP_VERSION=7 MYSQL_VERSION=5.7
   - PHP_VERSION=7 MYSQL_VERSION=5.6
-# - PHP_VERSION=5.6 MYSQL_VERSION=5.7
-# - PHP_VERSION=5.6 MYSQL_VERSION=5.6
 
 before_install:
   - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
@@ -27,5 +30,5 @@ notifications:
   email:
     recipients:
       - travis@ximdex.com
-    on_success: change # default: change
-    on_failure: always # default: always
+    on_success: change
+    on_failure: always
