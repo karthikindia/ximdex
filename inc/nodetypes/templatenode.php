@@ -99,7 +99,7 @@ class templatenode extends FileNode
     {
 
         if (!($ptdContent || $fileName)) {
-            XMD_log::error('Any param void');
+        	Logger::error('Any param void');
             return NULL;
         }
 
